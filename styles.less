@@ -1,0 +1,233 @@
+@import "css/bootstrap/mybootstrap.less";
+
+// COLOR SCHEME
+@color-primary: #000;
+@color-secondary: #fff;
+@color-accent: #78001F;
+
+// FONTS
+@font-primary: 'REIS-Regular';
+@font-secondary: 'Elegant Lux';
+@font-face {
+	font-family: 'Elegant Lux';
+	src: url('ElegantLux-Mager.otf');
+	src: url('ElegantLux-Mager.otf?#iefix') format('embedded-opentype'),
+    	url('ElegantLux-Mager.otf')  format('truetype');
+}
+@font-face {
+	font-family: 'REIS-Regular';
+	src: url('REIS-Regular.otf');
+	src: url('REIS-Regular.otf?#iefix') format('embedded-opentype'),
+    	url('REIS-Regular.otf')  format('truetype');
+}
+
+//BREAKPOINT
+@sm-breakpoint: ~"only screen and (min-width: 48em) and (min-device-width: 48em)";
+
+//COMMON MEASUREMENTS
+@padding-height: 30px;
+
+//MIXINS
+//Common styling for all links
+.a-mixin() {
+	font-family: @font-secondary;
+	color: @color-primary;
+	text-decoration: none;
+	&:visited {
+		color: @color-primary;
+	}
+	&:focus {
+		color: @color-primary;
+		text-decoration: none;
+	}
+	&:hover {
+		color: @color-accent;
+		text-decoration: none;
+	}
+}
+//Vertical center code bit
+.absolute-center() {
+	position: absolute;
+	top: 0;;
+	left: 0;
+	bottom: 0;
+	right: 0;
+}
+//Transparent overlay for media thumbnails
+.pseudo-overlay() {
+	content: "";
+	background-color: @color-secondary;
+	opacity: 0.6;
+	.absolute-center;
+}
+
+//FULL PAGE STYLES
+body {
+	background-color: @color-primary;
+	.container-fixed();
+	//Breakpoint adds black margin outline to page
+	@media @sm-breakpoint {
+		margin: 50px;
+	}
+}
+.wrapper {
+	background-color: @color-secondary;
+	.make-row();
+}
+
+//HEADER AND NAV STYLES
+header {
+	.make-xs-column(12);
+	h1 {
+		font-family: @font-primary;
+		font-size: 9.5em;
+		text-align: center;
+		color: @color-accent;
+		padding-bottom: @padding-height;
+	}
+	nav {
+		text-align: center;
+		padding-bottom: @padding-height;
+		a {
+			.a-mixin;
+			font-size: 2.3em;
+			white-space: nowrap;
+			margin-left: 10%;
+			margin-right: 10%;
+		}
+	}
+}
+
+//MEDIA SECTION STYLES
+#content-media {
+	.make-xs-column(12);
+	.album {
+		.make-xs-column(12);
+		.make-sm-column(4);
+		.make-lg-column(3);
+		a {
+			img {
+				margin: 0 auto;
+			}
+			.txt-overlay {
+				.absolute-center;
+				font-family: @font-secondary;
+				font-size: 3em;
+				text-align: center;
+				color: @color-primary;
+				height: 100%;
+				width: 100%;
+				margin: auto;
+				padding-left: 20px;
+				padding-right: 20px;
+				display: table;
+			}
+			&::before {
+				.pseudo-overlay;
+			}
+			//Breakpoint changes to hover overlay styles
+			@media @sm-breakpoint {
+				.txt-overlay {
+					display: none;
+					font-size: 2.3em;
+				}
+				&:hover {
+					.txt-overlay {
+						display: table;
+					}
+				}
+				&::before {
+					display: none;
+				}
+				&:hover::before {
+					.pseudo-overlay;
+					display: inline;
+				}
+			}
+		}
+	}
+}
+
+//SHOW SECTION STYLES
+#content-shows {
+	.make-xs-column(12);
+	padding-top: 37.5px;
+	padding-bottom: @padding-height;
+	.show-list {
+		list-style: none;
+		padding: 0;
+		margin-left: (@grid-gutter-width / 2);
+		margin-right: (@grid-gutter-width / 2);
+		.item {
+			.make-xs-column(12);
+			padding-top: (@grid-gutter-width / 2);   
+			padding-bottom: (@grid-gutter-width / 2);
+			border-bottom: 1px solid @color-accent;
+			&:first-child {
+				border-top: 1px solid @color-accent;
+			}
+			.show-date {
+				.make-xs-column(2);
+				text-align: center;
+				width: 40px;
+				height: 80px;
+				margin-left: 15px;
+				display: inline-block;
+				span:first-child {
+					font-family: @font-secondary;
+					font-size: 1.3em;
+				}
+				span:last-child {
+					font-family: @font-primary;
+					font-size: 3.3em;
+					margin-top: -15px;
+					display: inline-block;
+				}
+			}
+			.show-details {
+				.make-xs-column-offset(1);
+				.make-xs-column(9);
+				.absolute-center;
+				font-family: @font-secondary;
+				padding-left: 30px;
+				margin: auto;
+				display: table;
+				span:first-child {
+					font-size: 1.6em;
+					@media @sm-breakpoint {
+						font-size: 2.3em;
+					}
+				}
+				span:last-child {
+					font-size: 1.3em;
+					display: block;
+				}
+			}
+		}
+	}
+}
+
+//FOOTER STYLES
+footer {
+	.make-xs-column(12);
+	font-family: @font-secondary;
+	font-size: 1.2em;
+	text-align: center;
+	padding-bottom: @padding-height;
+	span, a {
+		margin: 4%;
+		white-space: nowrap;
+	}
+	a {
+		.a-mixin;
+	}
+}
+
+
+
+
+
+
+
+
+
