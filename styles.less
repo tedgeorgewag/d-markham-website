@@ -87,13 +87,16 @@ header {
 	}
 	nav {
 		text-align: center;
-		padding-bottom: @padding-height;
 		a {
 			.a-mixin;
 			font-size: 2.3em;
 			white-space: nowrap;
 			margin-left: 10%;
 			margin-right: 10%;
+			@media @sm-breakpoint {
+				margin-left: 5%;
+				margin-right: 5%;
+			}
 		}
 	}
 }
@@ -193,14 +196,17 @@ header {
 				margin: auto;
 				display: table;
 				span:first-child {
-					font-size: 1.6em;
+					font-size: 1.3em;
 					@media @sm-breakpoint {
-						font-size: 2.3em;
+						font-size: 1.9em;
 					}
 				}
 				span:last-child {
-					font-size: 1.3em;
+					font-size: 1em;
 					display: block;
+					@media @sm-breakpoint {
+						font-size: 1.3em;
+					}
 				}
 			}
 		}
@@ -222,12 +228,3 @@ footer {
 		.a-mixin;
 	}
 }
-
-
-
-
-
-
-
-
-
